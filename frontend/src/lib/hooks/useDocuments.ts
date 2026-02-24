@@ -17,7 +17,7 @@ export function useDocuments() {
     try {
       const token = getToken();
       if (!token) { setLoading(false); return; }
-      const res = await fetch('process.env.NEXT_PUBLIC_API_URL/api/documents/', {
+      const res = await fetch(${process.env.NEXT_PUBLIC_API_URL}/api/documents/', {
         headers: { Authorization: `Bearer ${token}` },
       });
       if (res.status === 401) { localStorage.removeItem('token'); window.location.href = '/login'; return; }
@@ -35,7 +35,7 @@ export function useDocuments() {
     if (!token) throw new Error('Not authenticated');
     const formData = new FormData();
     formData.append('file', file);
-    const res = await fetch('process.env.NEXT_PUBLIC_API_URL/api/documents/upload', {
+    const res = await fetch(${process.env.NEXT_PUBLIC_API_URL}/api/documents/upload', {
       method: 'POST',
       headers: { Authorization: `Bearer ${token}` },
       body: formData,
