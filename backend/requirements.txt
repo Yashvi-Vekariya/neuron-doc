@@ -8,8 +8,6 @@ supabase
 PyPDF2
 numpy
 python-dotenv
-sentence-transformers
 python-jose[cryptography]
 passlib[bcrypt]
-python-multipart
 email-validator
