@@ -14,13 +14,8 @@ app = FastAPI(
 # Configure CORS
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=[
-        "https://neuron-doc-frontend.vercel.app",
-        "https://neuron-doc-frontend-git-main-yashvi-vekariyas-projects.vercel.app",
-        "https://neuron-doc-frontend-5j9318wy8-yashvi-vekariyas-projects.vercel.app",
-        "http://localhost:3000",
-    ],
-    allow_credentials=True,
+    allow_origins=["*"],
+    allow_credentials=False,
     allow_methods=["*"],
     allow_headers=["*"],
 )
