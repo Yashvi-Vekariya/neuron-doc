@@ -1,7 +1,7 @@
 'use client';
 import { useState, useRef, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import { AgentVisualizer } from './AgentVisualizer';
+import { AgentVisualizer } from '@/components/chat/AgentVisualizer';
 import { MessageBubble } from './MessageBubble';
 import { Send, ArrowLeft, RotateCcw, FileText } from 'lucide-react';
 import { toast } from 'sonner';
