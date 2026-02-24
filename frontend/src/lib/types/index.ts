@@ -35,3 +35,4 @@ export interface ChatResponse {
   confidence: number;
   sources: Source[];
 }
+

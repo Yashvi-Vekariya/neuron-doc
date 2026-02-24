@@ -1,4 +1,4 @@
-const API_URL = 'http://localhost:8000';
+const API_URL = 'process.env.NEXT_PUBLIC_API_URL';
 
 function getToken() {
   return typeof window !== 'undefined' ? localStorage.getItem('token') : null;
@@ -38,3 +38,4 @@ export async function deleteDocument(docId: string) {
   if (!res.ok) { const err = await res.json(); throw new Error(err.detail || 'Delete failed'); }
   return res.json();
 }
+

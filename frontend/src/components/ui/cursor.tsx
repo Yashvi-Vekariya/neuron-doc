@@ -20,3 +20,4 @@ export function CustomCursor() {
       style={{ left: pos.x - 4, top: pos.y - 4, boxShadow: '0 0 8px #00ff41, 0 0 16px #00ff41' }} />
   );
 }
+

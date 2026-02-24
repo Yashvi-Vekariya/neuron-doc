@@ -10,7 +10,7 @@ export function useAuth() {
       try {
         const token = localStorage.getItem('token');
         if (!token) { setLoading(false); return; }
-        const res = await fetch('http://localhost:8000/api/auth/me', {
+        const res = await fetch('process.env.NEXT_PUBLIC_API_URL/api/auth/me', {
           headers: { Authorization: `Bearer ${token}` },
         });
         if (res.ok) { const data = await res.json(); setUser(data); }
@@ -31,3 +31,4 @@ export function useAuth() {
 
   return { user, loading, logout, isAuthenticated };
 }
+

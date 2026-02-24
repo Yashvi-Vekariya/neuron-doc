@@ -17,11 +17,14 @@ export function LoginForm({ onSuccess }: { onSuccess?: () => void }) {
     if (!email || !password) { toast.error('Please fill all fields'); return; }
     setLoading(true);
     try {
-      const res = await fetch('http://localhost:8000/api/auth/login', {
+      const API_URL = process.env.NEXT_PUBLIC_API_URL;
+      
+      const res = await fetch(`${API_URL}/api/auth/login`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, password }),
       });
+      
       if (!res.ok) { const err = await res.json(); throw new Error(err.detail || 'Invalid credentials'); }
       const data = await res.json();
       localStorage.setItem('token', data.access_token);
@@ -66,3 +69,4 @@ export function LoginForm({ onSuccess }: { onSuccess?: () => void }) {
     </form>
   );
 }
+

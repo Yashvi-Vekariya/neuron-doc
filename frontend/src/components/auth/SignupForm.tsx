@@ -21,7 +21,8 @@ export function SignupForm({ onSuccess }: { onSuccess?: () => void }) {
     if (password.length < 8) { toast.error('Password must be at least 8 characters'); return; }
     setLoading(true);
     try {
-      const res = await fetch('http://localhost:8000/api/auth/signup', {
+      const API_URL = process.env.NEXT_PUBLIC_API_URL;
+      const res = await fetch(`${API_URL}/api/auth/signup`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, password, full_name: fullName }),
@@ -77,3 +78,4 @@ export function SignupForm({ onSuccess }: { onSuccess?: () => void }) {
     </form>
   );
 }
+

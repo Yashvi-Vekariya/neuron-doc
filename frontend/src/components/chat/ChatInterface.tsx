@@ -230,3 +230,4 @@ export function ChatInterface({ docId }: { docId: string }) {
     </div>
   );
 }
+

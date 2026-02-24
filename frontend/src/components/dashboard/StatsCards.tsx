@@ -36,3 +36,4 @@ export function StatsCards({ documents }: { documents: DocItem[] }) {
     </div>
   );
 }
+

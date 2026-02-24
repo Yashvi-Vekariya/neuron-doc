@@ -7,3 +7,4 @@ export function Toaster() {
   // Already included in root layout via sonner's Toaster
   return null;
 }
+

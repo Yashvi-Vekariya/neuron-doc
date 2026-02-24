@@ -45,3 +45,4 @@ export function RecentActivity({ documents }: { documents: DocItem[] }) {
     </div>
   );
 }
+

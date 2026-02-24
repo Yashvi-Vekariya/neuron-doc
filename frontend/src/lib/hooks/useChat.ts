@@ -21,7 +21,7 @@ export function useChat(docId: string) {
     try {
       const token = localStorage.getItem('token');
       if (!token) throw new Error('Not authenticated');
-      const res = await fetch('http://localhost:8000/api/chat/', {
+      const res = await fetch('process.env.NEXT_PUBLIC_API_URL/api/chat/', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
         body: JSON.stringify({ doc_id: docId, question }),
@@ -44,3 +44,4 @@ export function useChat(docId: string) {
 
   return { messages, loading, sendMessage, clearMessages };
 }
+

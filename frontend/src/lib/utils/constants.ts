@@ -1,4 +1,4 @@
-export const API_URL = 'http://localhost:8000';
+export const API_URL = 'process.env.NEXT_PUBLIC_API_URL';
 
 export const ROUTES = {
   HOME: '/',
@@ -22,3 +22,4 @@ export const AGENT_STEPS = [
 ] as const;
 
 export const MAX_FILE_SIZE = 50 * 1024 * 1024; // 50MB
+

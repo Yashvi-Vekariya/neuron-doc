@@ -95,3 +95,4 @@ export function DocumentGrid({ documents, onDelete, viewMode = 'grid' }: Props) 
     </div>
   );
 }
+

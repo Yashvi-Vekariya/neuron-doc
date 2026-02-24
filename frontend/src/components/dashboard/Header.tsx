@@ -10,7 +10,7 @@ export function Header({ title }: { title?: string }) {
       try {
         const token = localStorage.getItem('token');
         if (!token) return;
-        const res = await fetch('http://localhost:8000/api/auth/me', {
+        const res = await fetch('process.env.NEXT_PUBLIC_API_URL/api/auth/me', {
           headers: { Authorization: `Bearer ${token}` },
         });
         if (res.ok) setUser(await res.json());
@@ -40,3 +40,4 @@ export function Header({ title }: { title?: string }) {
     </header>
   );
 }
+

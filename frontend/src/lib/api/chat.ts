@@ -1,4 +1,4 @@
-const API_URL = 'http://localhost:8000';
+const API_URL = 'process.env.NEXT_PUBLIC_API_URL';
 
 function getToken() {
   return typeof window !== 'undefined' ? localStorage.getItem('token') : null;
@@ -36,3 +36,4 @@ export async function deleteChatHistory(docId: string) {
   if (!res.ok) throw new Error('Failed to delete history');
   return res.json();
 }
+
