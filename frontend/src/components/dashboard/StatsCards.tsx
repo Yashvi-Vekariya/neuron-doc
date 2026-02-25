@@ -37,3 +37,4 @@ export function StatsCards({ documents }: { documents: DocItem[] }) {
   );
 }
 
+

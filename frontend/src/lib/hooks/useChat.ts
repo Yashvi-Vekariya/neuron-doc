@@ -45,3 +45,4 @@ export function useChat(docId: string) {
   return { messages, loading, sendMessage, clearMessages };
 }
 
+

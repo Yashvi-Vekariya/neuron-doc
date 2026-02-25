@@ -65,7 +65,7 @@ export default function DocumentsPage() {
           {documents.map(doc => (
             <div key={doc.doc_id}
               className="border border-[#00ff41]/20 p-4 hover:border-[#00ff41]/50 transition-all group cursor-pointer"
-              onClick={() => router.push(`/dashboard/chat/${doc.doc_id}`)}>
+              onClick={() => router.push(`/chat/${doc.doc_id}`)}>
               <div className="flex items-start gap-3 mb-3">
                 <div className="w-10 h-10 border border-[#00ff41]/20 flex items-center justify-center shrink-0">
                   <FileText className="w-5 h-5 text-[#00ff41]" />
@@ -84,7 +84,7 @@ export default function DocumentsPage() {
               <div className="flex items-center justify-between">
                 <span className="text-[10px] text-[#1a5c26] font-mono">{formatRelativeTime(doc.created_at)}</span>
                 <div className="flex gap-1 opacity-0 group-hover:opacity-100 transition-opacity" onClick={e => e.stopPropagation()}>
-                  <button onClick={() => router.push(`/dashboard/chat/${doc.doc_id}`)}
+                  <button onClick={() => router.push(`/chat/${doc.doc_id}`)}
                     className="p-1.5 text-[#1a5c26] hover:text-[#00ff41] transition-colors">
                     <MessageSquare className="w-3.5 h-3.5" />
                   </button>
@@ -109,7 +109,7 @@ export default function DocumentsPage() {
           {documents.map(doc => (
             <div key={doc.doc_id}
               className="grid grid-cols-[1fr_80px_70px_90px_100px_50px] gap-3 p-3 border-b border-[#00ff41]/10 last:border-0 hover:bg-[#00ff41]/3 cursor-pointer group items-center"
-              onClick={() => router.push(`/dashboard/chat/${doc.doc_id}`)}>
+              onClick={() => router.push(`/chat/${doc.doc_id}`)}>
               <span className="font-mono text-sm truncate">{doc.filename}</span>
               <span className="font-mono text-xs text-[#1a5c26]">{formatFileSize(doc.file_size || 0)}</span>
               <span className="font-mono text-xs text-[#1a5c26]">{doc.chunks || 0}</span>
@@ -127,4 +127,5 @@ export default function DocumentsPage() {
     </div>
   );
 }
+
 

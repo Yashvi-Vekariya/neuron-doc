@@ -10,7 +10,7 @@ export const ROUTES = {
   ANALYTICS: '/dashboard/analytics',
   SETTINGS: '/dashboard/settings',
   HELP: '/dashboard/help',
-  CHAT: (docId: string) => `/dashboard/chat/${docId}`,
+  CHAT: (docId: string) => `/chat/${docId}`,
 } as const;
 
 export const AGENT_STEPS = [
@@ -22,4 +22,5 @@ export const AGENT_STEPS = [
 ] as const;
 
 export const MAX_FILE_SIZE = 50 * 1024 * 1024; // 50MB
+
 

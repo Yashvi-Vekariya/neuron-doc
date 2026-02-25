@@ -26,7 +26,7 @@ export function RecentActivity({ documents }: { documents: DocItem[] }) {
         {recent.map(doc => (
           <div key={doc.doc_id}
             className="flex items-center gap-3 p-3 hover:bg-[#00ff41]/3 cursor-pointer transition-colors group"
-            onClick={() => router.push(`/dashboard/chat/${doc.doc_id}`)}>
+            onClick={() => router.push(`/chat/${doc.doc_id}`)}>
             <div className={`w-7 h-7 border flex items-center justify-center shrink-0 ${
               doc.status === 'completed' ? 'border-[#00ff41]/40' : 'border-yellow-500/40'
             }`}>
@@ -45,4 +45,5 @@ export function RecentActivity({ documents }: { documents: DocItem[] }) {
     </div>
   );
 }
+
 

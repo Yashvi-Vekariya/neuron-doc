@@ -37,3 +37,4 @@ export async function deleteChatHistory(docId: string) {
   return res.json();
 }
 
+

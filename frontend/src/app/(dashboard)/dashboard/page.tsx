@@ -30,7 +30,7 @@ export default function DashboardPage() {
         setTimeout(() => {
           setUploading(false);
           setUploadProgress(0);
-          if (doc?.doc_id) router.push(`/dashboard/chat/${doc.doc_id}`);
+          if (doc?.doc_id) router.push(`/chat/${doc.doc_id}`);
         }, 600);
       } catch (e: any) {
         clearInterval(interval);
@@ -122,7 +122,7 @@ export default function DashboardPage() {
             <div
               key={doc.doc_id}
               className="border border-[#00ff41]/20 p-4 hover:border-[#00ff41]/50 transition-all cursor-pointer group"
-              onClick={() => router.push(`/dashboard/chat/${doc.doc_id}`)}
+              onClick={() => router.push(`/chat/${doc.doc_id}`)}
             >
               <div className="flex items-center gap-3">
                 <File className="w-4 h-4 text-[#00ff41] shrink-0" />
@@ -157,4 +157,5 @@ export default function DashboardPage() {
     </div>
   );
 }
+
 
