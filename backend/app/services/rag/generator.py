@@ -8,13 +8,10 @@ class GeneratorService:
         self.groq = groq_service
     
     def generate_answer(self, question: str, doc_id: str = None) -> Dict[str, Any]:
-        # Step 1: Use original question directly
         refined_question = question
         
-        # Step 2: Retrieve relevant documents via vector search
         docs = retriever_service.search(refined_question, doc_id)
         
-        # Step 3: Force include ALL chunks via keyword search
         if doc_id:
             supabase = db.get_client()
             words = [w.strip('?.,!') for w in question.split() if len(w.strip('?.,!')) >= 4]
@@ -34,7 +31,6 @@ class GeneratorService:
                 except Exception as e:
                     print(f"Keyword search error: {e}")
         
-        # Step 4: Prepare context
         if docs and len(docs) > 0:
             context = "\n\n".join([
                 f"[Chunk {i+1}]:\n{d.get('content', '')}"
@@ -43,20 +39,16 @@ class GeneratorService:
         else:
             context = "No relevant documents found."
 
-        # DEBUG - print context to terminal
         print("\n=== CONTEXT SENT TO LLM ===")
         print(context[:2000])
         print("=== END CONTEXT ===\n")
         
-        # Step 5: Generate answer
-        system_prompt = """You are a document Q&A assistant analyzing a resume/CV.
-Answer questions using ONLY the provided context chunks.
+        system_prompt = """You are a document Q&A assistant. Answer questions based ONLY on the provided context chunks.
 
 CRITICAL RULES:
-- Read ALL chunks carefully from top to bottom before responding
-- This resume contains project details with specific metrics and percentages
+- Read ALL chunks carefully before responding
 - If ANY chunk contains relevant information, use it to answer
-- For project questions: look for project names, tech stack, and achievement numbers
+- Connect related information across chunks to form complete answers
 - Quote specific numbers and facts directly from the context
 - Only say 'I cannot find this information' if truly absent from ALL chunks"""
 
@@ -66,14 +58,12 @@ CRITICAL RULES:
 
 Question: {question}
 
-Instructions: Read ALL chunks carefully. Find relevant information and answer directly:"""
+Answer directly based on the chunks above:"""
 
         answer = self.groq.generate_response(user_prompt, system_prompt)
         
-        # Step 6: Calculate confidence
         confidence = 0.9 if docs and len(docs) > 0 else 0.3
         
-        # Step 7: Format sources
         sources = []
         for d in docs[:3]:
             sources.append({

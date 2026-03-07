@@ -11,4 +11,4 @@ python-dotenv
 python-jose[cryptography]
 bcrypt
 email-validator
-sentence-transformers
+httpx

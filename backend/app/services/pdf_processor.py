@@ -20,7 +20,7 @@ class PDFProcessor:
         return text
 
     @staticmethod
-    def chunk_text(text: str, chunk_size: int = 300, overlap: int = 100) -> List[str]:
+    def chunk_text(text: str, chunk_size: int = 500, overlap: int = 150) -> List[str]:
         chunks = []
         if not text:
             return chunks
