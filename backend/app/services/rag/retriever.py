@@ -6,7 +6,7 @@ class RetrieverService:
     def __init__(self):
         self.supabase = db.get_client()
     
-    def hybrid_search(self, query_embedding: list, text_query: str, doc_id: str = None, limit: int = 5):
+    def hybrid_search(self, query_embedding: list, text_query: str, doc_id: str = None, limit: int = 8):
         results = []
         
         # Vector search
@@ -28,7 +28,6 @@ class RetrieverService:
                         "match_count": limit
                     }
                 ).execute()
-            
             if vector_res.data:
                 results.extend(vector_res.data)
         except Exception as e:
@@ -39,16 +38,17 @@ class RetrieverService:
         if len(results) < limit:
             try:
                 query = self.supabase.table("documents").select("*")
-                
                 if doc_id:
                     query = query.eq("doc_id", doc_id)
                 
-                keyword_res = query.ilike("content", f"%{text_query}%") \
+                # Search for key words individually instead of full query
+                keywords = [w for w in text_query.split() if len(w) > 3]
+                search_keyword = keywords[0] if keywords else text_query
+                
+                keyword_res = query.ilike("content", f"%{search_keyword}%") \
                                   .limit(limit - len(results)) \
                                   .execute()
-                
                 if keyword_res.data:
-                    # Avoid duplicates
                     existing_ids = {r.get('id') for r in results if r.get('id')}
                     for r in keyword_res.data:
                         if r.get('id') not in existing_ids:
@@ -57,12 +57,9 @@ class RetrieverService:
                 print(f"Keyword search error: {e}")
         
         return results
-    
-    def search(self, query: str, doc_id: str = None, limit: int = 5):
-        # Create embedding
+
+    def search(self, query: str, doc_id: str = None, limit: int = 8):
         query_embedding = embedding_service.embed(query)
-        
-        # Hybrid search
         return self.hybrid_search(query_embedding, query, doc_id, limit)
 
 retriever_service = RetrieverService()

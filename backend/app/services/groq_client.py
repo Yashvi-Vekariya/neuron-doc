@@ -27,11 +27,7 @@ class GroqService:
             return None
     
     def rewrite_query(self, query: str) -> str:
-        system_prompt = """You are a query rewriting expert. 
-Rewrite the question to be more specific and clear for document search.
-Return ONLY the rewritten question."""
-        
-        return self.generate_response(query, system_prompt, temperature=0.3) or query
+        return query  # use original query directly
     
     def generate_summary(self, text: str) -> str:
         system_prompt = "Summarize the following document concisely:"

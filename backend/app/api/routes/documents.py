@@ -35,8 +35,8 @@ async def upload_document(
     if not text or len(text.strip()) == 0:
         raise HTTPException(status_code=400, detail="Could not extract text from PDF")
     
-    chunks = pdf_processor.chunk_text(text, chunk_size=500, overlap=50)
-    
+    chunks = pdf_processor.chunk_text(text, chunk_size=300, overlap=100)
+        
     supabase = db.get_client()
     successful_chunks = 0
     
