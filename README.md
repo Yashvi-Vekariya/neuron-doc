@@ -5,6 +5,7 @@ An AI-powered document Q&A system where users can upload PDFs and ask questions 
 ## 🚀 Live Demo
 
 - **Frontend:** [https://neuron-doc.vercel.app](https://neuron-doc.vercel.app/)
+password :- abc123@gmail.com
 - **Backend API:** [https://neuron-doc.onrender.com](https://neuron-doc.onrender.com)
 
 ---
